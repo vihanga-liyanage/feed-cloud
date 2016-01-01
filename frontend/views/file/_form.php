@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
+use frontend\models\Module;
 
 /* @var $this yii\web\View */
 /* @var $model frontend\models\File */
@@ -12,7 +14,10 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
-	<?= $form->field($model, 'module')->textInput() ?>    
+	<?= $form->field($model, 'module')->dropDownList(
+    	ArrayHelper::map(Module::find()->all(), 'id', 'name'),
+    	['prompt'=>'Select Module']) 
+    ?>    
 
     <?= $form->field($model, 'file')->fileInput() ?>
 

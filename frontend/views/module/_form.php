@@ -19,7 +19,6 @@ use frontend\models\Year;
     <?= $form->field($model, 'year')->dropDownList(
     	ArrayHelper::map(Year::find()->all(), 'id', 'name'),
     	['prompt'=>'Select Academic year']) 
-
     ?>
 
     <div class="form-group">

@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model backend\models\Year */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Years', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'My Academic Years', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="year-view">
@@ -28,9 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
             'name',
-            'created_by',
         ],
     ]) ?>
 

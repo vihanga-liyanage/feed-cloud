@@ -38,6 +38,9 @@ class YearController extends Controller
             $searchModel = new YearSearch();
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
+            $dataProvider->sort = ['defaultOrder' => ['created_by'=>SORT_ASC]];
+            $dataProvider->query->where('created_by='.Yii::$app->user->id);
+            
             return $this->render('index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
@@ -65,7 +68,7 @@ class YearController extends Controller
     public function actionCreate()
     {
         $model = new Year();
-
+        $model->created_by = Yii::$app->user->id;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
