@@ -12,7 +12,6 @@ class SignupForm extends Model
 {
     public $firstname;
     public $lastname;
-    public $username;
     public $email;
     public $password;
 
@@ -22,12 +21,8 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'filter', 'filter' => 'trim'],
-            ['username', 'required'],
             ['firstname', 'required'],
             ['lastname', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
@@ -49,7 +44,6 @@ class SignupForm extends Model
     {
         if ($this->validate()) {
             $user = new User();
-            $user->username = $this->username;
             $user->firstname = $this->firstname;
             $user->lastname = $this->lastname;
             $user->email = $this->email;
