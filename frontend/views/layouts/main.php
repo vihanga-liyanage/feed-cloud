@@ -43,8 +43,9 @@ AppAsset::register($this);
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
+
         $menuItems[] = [
-            'label' => 'Logout (' . Yii::$app->user->id . ')',
+            'label' => 'Logout('.Yii::$app->session->get('user.name').')',
             'url' => ['/site/logout'],
             'linkOptions' => ['data-method' => 'post']
         ];

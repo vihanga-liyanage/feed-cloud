@@ -89,6 +89,9 @@ class SiteController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             $user = $model->getUser();
+            //set name in session
+            Yii::$app->session->set('user.name',$user['firstname']);
+
             $type = $user['type'];
             if ($type == 'Tutor') {
                 return $this->render('tutorHome');
