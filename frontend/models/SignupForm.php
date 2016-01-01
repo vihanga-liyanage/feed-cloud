@@ -12,6 +12,7 @@ class SignupForm extends Model
 {
     public $firstname;
     public $lastname;
+    public $type;
     public $email;
     public $password;
 
@@ -23,6 +24,7 @@ class SignupForm extends Model
         return [
             ['firstname', 'required'],
             ['lastname', 'required'],
+            ['type', 'required'],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
@@ -46,6 +48,7 @@ class SignupForm extends Model
             $user = new User();
             $user->firstname = $this->firstname;
             $user->lastname = $this->lastname;
+            $user->type = $this->type;
             $user->email = $this->email;
             $user->setPassword($this->password);
             $user->generateAuthKey();

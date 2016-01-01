@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $firstname
  * @property string $lastname
+ * @property string $type
  * @property string $auth_key
  * @property string $password_hash
  * @property string $password_reset_token
@@ -38,7 +39,8 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['firstname', 'lastname', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
+            [['firstname', 'lastname', 'type', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
+            [['type'], 'string'],
             [['status', 'created_at', 'updated_at'], 'integer'],
             [['password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
             [['firstname', 'lastname'], 'string', 'max' => 50],
@@ -57,6 +59,7 @@ class User extends \yii\db\ActiveRecord
             'id' => 'ID',
             'firstname' => 'Firstname',
             'lastname' => 'Lastname',
+            'type' => 'Type',
             'auth_key' => 'Auth Key',
             'password_hash' => 'Password Hash',
             'password_reset_token' => 'Password Reset Token',

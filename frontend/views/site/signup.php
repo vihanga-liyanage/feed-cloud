@@ -23,6 +23,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'lastname') ?>
 
+                <?= $form->field($model, 'type')->dropDownList(['student' => 'Student', 'tutor' => 'Tutor'], ['prompt' => 'Select type']) ?>
+
                 <?= $form->field($model, 'email') ?>
 
                 <?= $form->field($model, 'password')->passwordInput() ?>
