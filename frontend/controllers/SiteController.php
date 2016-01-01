@@ -89,8 +89,13 @@ class SiteController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             $user = $model->getUser();
-            //var_dump($user);die;
-            return $this->render('index');
+            $type = $user['type'];
+            if ($type == 'Tutor') {
+                return $this->render('tutorHome');
+            } else {
+                return $this->render('studentHome');
+            }
+            
         } else {
             return $this->render('login', [
                 'model' => $model,
