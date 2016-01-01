@@ -25,6 +25,7 @@ use Yii;
  */
 class User extends \yii\db\ActiveRecord
 {
+    private $confirmPassword;
     /**
      * @inheritdoc
      */
@@ -39,7 +40,7 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['firstname', 'lastname', 'type', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
+            [['firstname', 'lastname', 'type', 'auth_key', 'confirmPassword', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
             [['type'], 'string'],
             [['status', 'created_at', 'updated_at'], 'integer'],
             [['password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
