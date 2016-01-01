@@ -34,8 +34,11 @@ class FileController extends Controller
     public function actionIndex()
     {
         $searchModel = new FileSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+        $dataProvider = $searchModel->search(array('user'=>Yii::$app->user->id));
+        
+        $dataProvider->sort = ['defaultOrder' => ['user'=>SORT_ASC]];
+        $dataProvider->query->where('user='.Yii::$app->user->id);
+        
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

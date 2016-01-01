@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\FileSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Files';
+$this->title = 'Feedback Files';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="file-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create File', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Upload New File', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?= GridView::widget([
@@ -35,11 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
                     },
             ],
             
-            [
-                'header'=>'Owner name',
-                'attribute'=>'user0.firstname',
-            ],
-            
             [   
                 'header'=>'Module name',
                 'attribute'=>'module0.name',
@@ -47,6 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
-    ]); ?>
+    ]); 
+    ?>
 
 </div>

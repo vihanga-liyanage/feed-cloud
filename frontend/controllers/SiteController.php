@@ -7,6 +7,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use frontend\models\File;
+use frontend\models\FileSearch;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
@@ -72,7 +74,21 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        if (Yii::$app->user->isGuest) {
+            return $this->render('index');
+        } else {
+            $model = new LoginForm();
+            $user = $model->getUser();
+
+            $type = $user['type'];
+            if ($type == 'Tutor') {
+                return $this->render('tutorHome');
+            } else {
+                return $this->render('studentHome');
+            }
+
+        }
+        
     }
 
     /**
