@@ -15,6 +15,7 @@ class SignupForm extends Model
     public $type;
     public $email;
     public $password;
+    public $confirmPassword;
 
     /**
      * @inheritdoc
@@ -34,6 +35,9 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+
+            ['confirmPassword', 'required'],
+            ['confirmPassword', 'compare', 'compareAttribute'=>'password', 'message'=>"Passwords don't match"],
         ];
     }
 
