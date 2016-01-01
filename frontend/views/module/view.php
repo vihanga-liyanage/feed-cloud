@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model frontend\models\Module */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Modules', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'My Modules', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="module-view">
@@ -28,10 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'name',
-            'year',
-            'created_by',
+            [
+                'label' => 'Module title',
+                'attribute' => 'name'
+            ],
+            [
+                'label' => 'Academic year',
+                'attribute' => 'year0.name'
+            ]
         ],
     ]) ?>
 

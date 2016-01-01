@@ -14,3 +14,11 @@ use yii\widgets\ActiveForm;
 <?= Html::a('View My Feedback Files', ['file/index'], ['class' => 'btn btn-success']) ?>
 <br><br>
 <?= Html::a('Upload New Feedback File', ['file/create'], ['class' => 'btn btn-success']) ?>
+<br><br>
+<?= Html::a('View My Academic Years', ['year/index'], ['class' => 'btn btn-success']) ?>
+<br><br>
+<?= Html::a('Add New Academic Year', ['year/create'], ['class' => 'btn btn-success']) ?>
+<br><br>
+<?= Html::a('View My Modules', ['module/index'], ['class' => 'btn btn-success']) ?>
+<br><br>
+<?= Html::a('Add New Module', ['module/create'], ['class' => 'btn btn-success']) ?>

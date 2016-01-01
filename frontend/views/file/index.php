@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\FileSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Feedback Files';
+$this->title = 'My Feedback Files';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="file-index">
@@ -21,7 +21,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 

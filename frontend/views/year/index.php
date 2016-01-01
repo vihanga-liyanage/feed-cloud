@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\YearSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Years';
+$this->title = 'My Academic Years';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="year-index">

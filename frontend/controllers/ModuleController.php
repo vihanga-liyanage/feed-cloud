@@ -32,13 +32,20 @@ class ModuleController extends Controller
      */
     public function actionIndex()
     {
-        $searchModel = new ModuleSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect('index.php?r=site/login');
+        } else {
+            $searchModel = new ModuleSearch();
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
+            $dataProvider->sort = ['defaultOrder' => ['created_by'=>SORT_ASC]];
+            $dataProvider->query->where('created_by='.Yii::$app->user->id);
+
+            return $this->render('index', [
+                'searchModel' => $searchModel,
+                'dataProvider' => $dataProvider,
+            ]);
+        }
     }
 
     /**
@@ -61,7 +68,7 @@ class ModuleController extends Controller
     public function actionCreate()
     {
         $model = new Module();
-
+        $model->created_by = Yii::$app->user->id;
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {

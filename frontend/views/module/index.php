@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel frontend\models\ModuleSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Modules';
+$this->title = 'My Modules';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="module-index">
@@ -21,14 +21,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
-            'name',
-            'year',
-            'created_by',
+            [
+                'header' => 'Module title',
+                'value' => 'name'
+            ],
+            [
+                'header' => 'Academic year',
+                'value' => 'year0.name'
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
