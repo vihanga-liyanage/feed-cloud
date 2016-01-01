@@ -2,21 +2,15 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Feed-Cloud';
 ?>
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <h2>Welcome to Feed Cloud!</h2>
 
         <p class="lead">
-            <?php 
-                if (Yii::$app->user->isGuest) {
-                    echo "Hello geust!";
-                } else {
-                    echo Yii::$app->user->id; 
-                }
-            ?>
+            The student feedback portal.
         </p>
 
         

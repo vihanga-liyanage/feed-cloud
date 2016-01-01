@@ -8,6 +8,7 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 use frontend\models\File;
+use common\models\User;
 use frontend\models\FileSearch;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
@@ -77,9 +78,8 @@ class SiteController extends Controller
         if (Yii::$app->user->isGuest) {
             return $this->render('index');
         } else {
-            $model = new LoginForm();
-            $user = $model->getUser();
-
+            $user = User::findIdentity(Yii::$app->user->id);
+            //var_dump($user);die;
             $type = $user['type'];
             if ($type == 'Tutor') {
                 return $this->render('tutorHome');
@@ -120,6 +120,36 @@ class SiteController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+
+    /**
+     * Signs user up.
+     *
+     * @return mixed
+     */
+    public function actionSignup()
+    {
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post())) {
+            if ($user = $model->signup()) {
+                //var_dump($user);die;
+                if (Yii::$app->user->login($user, 0)) {
+                    //set name in session
+                    Yii::$app->session->set('user.name',$user['firstname']);
+
+                    $type = $user['type'];
+                    if ($type == 'Tutor' || $type == 'tutor' ) {
+                        return $this->render('tutorHome');
+                    } else {
+                        return $this->render('studentHome');
+                    }
+                }
+            }
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
     }
 
     /**
@@ -165,27 +195,6 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
-    }
-
-    /**
-     * Signs user up.
-     *
-     * @return mixed
-     */
-    public function actionSignup()
-    {
-        $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
-                    return $this->goHome();
-                }
-            }
-        }
-
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
     }
 
     /**
