@@ -81,14 +81,12 @@ class SiteController extends Controller
             $user = User::findIdentity(Yii::$app->user->id);
             //var_dump($user);die;
             $type = $user['type'];
-            if ($type == 'Tutor') {
-                return $this->render('tutorHome');
+            if ($type == 'Tutor' || $type == 'tutor') {
+                return $this->redirect('index.php?r=file/index');
             } else {
                 return $this->render('studentHome');
             }
-
         }
-        
     }
 
     /**
@@ -109,8 +107,8 @@ class SiteController extends Controller
             Yii::$app->session->set('user.name',$user['firstname']);
 
             $type = $user['type'];
-            if ($type == 'Tutor') {
-                return $this->render('tutorHome');
+            if ($type == 'Tutor' || $type == 'tutor') {
+                return $this->redirect('index.php?r=file/index');
             } else {
                 return $this->render('studentHome');
             }
@@ -139,7 +137,7 @@ class SiteController extends Controller
 
                     $type = $user['type'];
                     if ($type == 'Tutor' || $type == 'tutor' ) {
-                        return $this->render('tutorHome');
+                        return $this->redirect('index.php?r=file/index');
                     } else {
                         return $this->render('studentHome');
                     }

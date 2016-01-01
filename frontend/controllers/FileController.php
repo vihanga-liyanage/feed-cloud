@@ -5,6 +5,7 @@ namespace frontend\controllers;
 use Yii;
 use frontend\models\File;
 use frontend\models\FileSearch;
+use common\models\User;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -36,16 +37,26 @@ class FileController extends Controller
         if (Yii::$app->user->isGuest) {
             return $this->redirect('index.php?r=site/login');
         } else {
-            $searchModel = new FileSearch();
-            $dataProvider = $searchModel->search(array('user'=>Yii::$app->user->id));
-            
-            $dataProvider->sort = ['defaultOrder' => ['user'=>SORT_ASC]];
-            $dataProvider->query->where('user='.Yii::$app->user->id);
-            
+            $user = User::findIdentity(Yii::$app->user->id);
+            //var_dump($user);die;
+            $type = $user['type'];
+            if ($type == 'Tutor' || $type == 'tutor') {
+                $searchModel = new FileSearch();
+                $dataProvider = $searchModel->search(array('user'=>Yii::$app->user->id));
+            } else {
+                $searchModel = new FileSearch();
+                $dataProvider = $searchModel->search(array('user'=>Yii::$app->user->id));
+                //filtering only self uploaded files
+                $dataProvider->sort = ['defaultOrder' => ['user'=>SORT_ASC]];
+                $dataProvider->query->where('user='.Yii::$app->user->id);  
+            }    
+
             return $this->render('index', [
                 'searchModel' => $searchModel,
                 'dataProvider' => $dataProvider,
+                'type' => $type,
             ]);
+            
         }
     }
 
