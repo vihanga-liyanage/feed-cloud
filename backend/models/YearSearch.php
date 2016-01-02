@@ -18,8 +18,8 @@ class YearSearch extends Year
     public function rules()
     {
         return [
-            [['id', 'created_by'], 'integer'],
-            [['name'], 'safe'],
+            [['id'], 'integer'],
+            [['name', 'created_by'], 'safe'],
         ];
     }
 
@@ -55,12 +55,14 @@ class YearSearch extends Year
             return $dataProvider;
         }
 
+        $query ->joinWith('createdBy'); 
+
         $query->andFilterWhere([
             'id' => $this->id,
-            'created_by' => $this->created_by,
         ]);
 
-        $query->andFilterWhere(['like', 'name', $this->name]);
+        $query->andFilterWhere(['like', 'name', $this->name])
+              ->andFilterWhere(['like', 'createdBy.firstname', $this->created_by]);;
 
         return $dataProvider;
     }

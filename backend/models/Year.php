@@ -43,7 +43,7 @@ class Year extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Year title',
             'created_by' => 'Created By',
         ];
     }

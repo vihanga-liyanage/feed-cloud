@@ -9,8 +9,9 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<h1>This is student home</h1>
-
+<h2>Welcome to Feed-Cloud!</h2>
+<p>Choose your action to get started...</p>
+<br>
 <?= Html::a('View My Feedback Files', ['file/index'], ['class' => 'btn btn-success']) ?>
 <br><br>
 <?= Html::a('Upload New Feedback File', ['file/create'], ['class' => 'btn btn-success']) ?>

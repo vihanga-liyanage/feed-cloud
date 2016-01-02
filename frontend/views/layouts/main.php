@@ -23,6 +23,11 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body>
+<style type="text/css">
+    body{
+        
+    }
+</style>
 <?php $this->beginBody() ?>
 
 <div class="wrap">
@@ -68,7 +73,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Feed-Cloud <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
