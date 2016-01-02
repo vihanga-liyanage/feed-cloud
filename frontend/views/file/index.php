@@ -15,11 +15,25 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="file-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <?php 
+        if ($type == 'Tutor' || $type == 'tutor'){
+            echo Html::a('Academic Years', ['year/index'], ['class' => 'btn btn-success']);
+            echo '&nbsp;';
+            echo Html::a('Modules', ['module/index'], ['class' => 'btn btn-success']);
+
+        }
+    ?>
+
+    <h2><?= Html::encode($this->title) ?></h2>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Upload New File', ['create'], ['class' => 'btn btn-success']) ?>
+        <?php 
+            if (!($type == 'Tutor' || $type == 'tutor')){
+                echo Html::a('Upload New File', ['create'], ['class' => 'btn btn-success']);
+            }
+        ?>
+        
     </p>
     <?php 
     if ($type == 'Tutor' || $type == 'tutor') {
